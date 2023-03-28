@@ -10,6 +10,19 @@
 ]]
 ModUtil.RegisterMod("PrintUtil")
 
+PrintUtil.config = {
+    Debug = false,
+}
+
+--- DebugPrint wrapper to check Debug setting add PrintUtil prefix
+function PrintUtil.Log( text )
+    if not PrintUtil.config.Debug then
+        return
+    end
+
+    DebugPrint({ Text = "[PrintUtil] " .. text })
+end
+
 --- Util method to draw text to the screen
 -- @param obstacleName Name of textbox
 -- @param text String to display
@@ -35,12 +48,18 @@ function PrintUtil.createOverlayLine(obstacleName, text, kwargs)
 
     -- If this anchor was already created, just modify the existing textbox
     if ScreenAnchors[obstacleName] ~= nil then
+
+        HitTracker.Log( "Textbox " .. obstacleName .. "already created, just updating value." )
+
         ModifyTextBox({
             Id = ScreenAnchors[obstacleName],
             Text = text,
             Color = (kwargs or {color = Color.White}).color or text_config_table.Color
         })
     else -- create a new anchor/textbox and fade it in
+
+        HitTracker.Log( "Creating " .. obstacleName .. " textbox." )
+
         ScreenAnchors[obstacleName] = CreateScreenObstacle({
             Name = "BlankObstacle",
             X = x_pos,
@@ -68,8 +87,12 @@ end
 
 function PrintUtil.destroyScreenAnchor(obstacleName)
     if ScreenAnchors[obstacleName] ~= nil then
+        HitTracker.Log( "Destroying " .. obstacleName .." textbox." )
+
 		Destroy({ Id = ScreenAnchors[obstacleName] })
 		ScreenAnchors[obstacleName] = nil
+    else
+        HitTracker.Log( "Textbox " .. obstacleName .. " does not exist.")
     end
 end
 
