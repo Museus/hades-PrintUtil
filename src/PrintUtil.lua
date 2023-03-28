@@ -1,12 +1,13 @@
 --[[
-  PrintUtil v1.0
-  Authors:
-    Ellomenop#2254 | https://twitch.tv/Ellomenop
-    Museus#7777 | https://twitch.tv/Museus7
+    PrintUtil v1.1.0
+    Authors:
+        Ellomenop#2254 | https://twitch.tv/Ellomenop
+        Museus#7777 | https://twitch.tv/Museus7
+    Dependencies: ModUtil
 
-  Contains functions to print to the screen in an efficient and customizable
-  manner, and to get the current stack trace, to determine who is calling a
-  function and from where.
+    Contains functions to print to the screen in an efficient and customizable
+    manner, and to get the current stack trace, to determine who is calling a
+    function and from where.
 ]]
 ModUtil.RegisterMod("PrintUtil")
 
