@@ -50,7 +50,7 @@ function PrintUtil.createOverlayLine(obstacleName, text, kwargs)
     -- If this anchor was already created, just modify the existing textbox
     if ScreenAnchors[obstacleName] ~= nil then
 
-        HitTracker.Log( "Textbox " .. obstacleName .. "already created, just updating value." )
+        PrintUtil.Log( "Textbox " .. obstacleName .. "already created, just updating value." )
 
         ModifyTextBox({
             Id = ScreenAnchors[obstacleName],
@@ -59,7 +59,7 @@ function PrintUtil.createOverlayLine(obstacleName, text, kwargs)
         })
     else -- create a new anchor/textbox and fade it in
 
-        HitTracker.Log( "Creating " .. obstacleName .. " textbox." )
+        PrintUtil.Log( "Creating " .. obstacleName .. " textbox." )
 
         ScreenAnchors[obstacleName] = CreateScreenObstacle({
             Name = "BlankObstacle",
@@ -88,12 +88,12 @@ end
 
 function PrintUtil.destroyScreenAnchor(obstacleName)
     if ScreenAnchors[obstacleName] ~= nil then
-        HitTracker.Log( "Destroying " .. obstacleName .." textbox." )
+        PrintUtil.Log( "Destroying " .. obstacleName .." textbox." )
 
 		Destroy({ Id = ScreenAnchors[obstacleName] })
 		ScreenAnchors[obstacleName] = nil
     else
-        HitTracker.Log( "Textbox " .. obstacleName .. " does not exist.")
+        PrintUtil.Log( "Textbox " .. obstacleName .. " does not exist.")
     end
 end
 
